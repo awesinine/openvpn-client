@@ -100,12 +100,18 @@ vpn() { local server="$1" user="$2" pass="$3" port="${4:-1194}" \
     echo "keepalive 10 30" >>$conf
     echo "nobind" >>$conf
     echo "persist-key" >>$conf
-    echo "ca /vpn/vpn-ca.crt" >>$conf
+    echo "persist-tun" >>$conf
+    echo "cipher aes-128-cbc" >>$conf
+    echo "ca /vpn/ca.rsa.2048.crt" >>$conf
     echo "tls-client" >>$conf
     echo "remote-cert-tls server" >>$conf
     echo "comp-lzo" >>$conf
     echo "verb 1" >>$conf
+    echo "auth sha1" >>$conf
     echo "reneg-sec 0" >>$conf
+    echo "crl-verify /vpn/crl.rsa.2048.pem" >>$conf
+    echo "reneg-sec 0" >>$conf
+    echo "disable-occ" >>$conf
     echo "redirect-gateway def1" >>$conf
     echo "auth-user-pass $auth" >>$conf
 
