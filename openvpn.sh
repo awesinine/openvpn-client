@@ -109,6 +109,7 @@ vpn() { local server="$1" user="$2" pass="$3" port="${4:-1194}" \
     echo "verb 1" >>$conf
     echo "auth sha1" >>$conf
     echo "reneg-sec 0" >>$conf
+    echo "mssfix 1300" >>$conf
     echo "crl-verify /vpn/crl.rsa.2048.pem" >>$conf
     echo "reneg-sec 0" >>$conf
     echo "disable-occ" >>$conf
